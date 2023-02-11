@@ -1,14 +1,20 @@
 USAGE
 -----
 
-
+Steps:
+1. Configure AWS EC2. Cluster of AWS EC2 is set up and docker and docker compose are installed there. Please check section **USAGE EC2**
+1. Configure AWS Security Group. Ports of services have to be opened. Please check section **USAGE SECURITY GROUP**
+1. Generate PPK file from PEM file. Please check section **USAGE PUTTYGEN**
+1. Deploy file "docker-compose.yaml" on AWS EC2. Please check section **USAGE WINSCP**
+1. Start docker containers on AWS EC2. Please check section **USAGE PUTTY**
+1. Test solution in the browser. Please check section **USAGE BROWSER**
 
 
 DESCRIPTION
 -----------
 
 ##### Goal
-The goal of this project is to present how to deploy **microservices** on **AWS** cloud service type **EC2**. These microservices are created in **Java** programming language with usage **Spring Boot Cloud** framework. Docker images of these microservices are built with usage **docker compose** toos.
+The goal of this project is to present how to deploy **microservices** on **AWS** cloud service type **EC2**. These microservices are created in **Java** programming language with usage **Spring Boot Cloud** framework. Docker images of these microservices are built with usage **docker compose** tool. Configuration of AWS EC2 is done manually. Deployment YAML file and usage docker compose is done by SSH.
 
 ##### Services
 This project consists of following services:

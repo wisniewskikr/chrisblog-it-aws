@@ -47,10 +47,153 @@ PRECONDITIONS
 
 ##### Preconditions - Tools
 * Installed **Operating System** (tested on Windows 10)
-* Installed **Putty** (tested on version )
-* Installed **PuttyGen** (tested on version )
-* Installed **WinSCP** (tested on version )
-* Installed **Aws cli**
+* Installed **Putty** (tested on version 0.78)
+* Installed **PuttyGen** (tested on version 0.78)
+* Installed **WinSCP** (tested on version 5.21.7)
 
 ##### Preconditions - Actions
 * Created AWS account with EC2 permissions
+
+
+USAGE EC2
+---------
+
+AWS Console:
+* https://console.aws.amazon.com/
+
+Code in section "User Data":
+
+```
+#!/bin/bash
+set -x
+yum update -y
+
+# Install Docker
+amazon-linux-extras install docker -y
+service docker start
+systemctl enable docker
+usermod -a -G docker ec2-user
+ chmod 666 /var/run/docker.sock
+
+# Install Docker Compose
+curl -L https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+
+```
+
+![My Image](readme-images/ec2-01.png)
+
+![My Image](readme-images/ec2-02.png)
+
+![My Image](readme-images/ec2-03.png)
+
+![My Image](readme-images/ec2-04.png)
+
+![My Image](readme-images/ec2-05.png)
+
+![My Image](readme-images/ec2-06.png)
+
+![My Image](readme-images/ec2-07.png)
+
+![My Image](readme-images/ec2-08.png)
+
+![My Image](readme-images/ec2-09.png)
+
+![My Image](readme-images/ec2-10.png)
+
+![My Image](readme-images/ec2-11.png)
+
+![My Image](readme-images/ec2-12.png)
+
+![My Image](readme-images/ec2-13.png)
+
+
+USAGE SECURITY GROUP
+--------------------
+
+AWS Console:
+* https://console.aws.amazon.com/
+
+![My Image](readme-images/sg-01.png)
+
+![My Image](readme-images/sg-02.png)
+
+![My Image](readme-images/sg-03.png)
+
+![My Image](readme-images/sg-04.png)
+
+
+USAGE PUTTYGEN
+--------------
+
+![My Image](readme-images/puttygen-01.png)
+
+![My Image](readme-images/puttygen-02.png)
+
+![My Image](readme-images/puttygen-03.png)
+
+![My Image](readme-images/puttygen-04.png)
+
+![My Image](readme-images/puttygen-05.png)
+
+![My Image](readme-images/puttygen-06.png)
+
+![My Image](readme-images/puttygen-07.png)
+
+
+USAGE WINSCP
+------------
+
+> NOTE: Please replace value "100.25.164.251" with your cluster id. You can find it in section "USAGE EC2". 
+
+![My Image](readme-images/winscp-01.png)
+
+![My Image](readme-images/winscp-02.png)
+
+![My Image](readme-images/winscp-03.png)
+
+![My Image](readme-images/winscp-04.png)
+
+![My Image](readme-images/winscp-05.png)
+
+![My Image](readme-images/winscp-06.png)
+
+![My Image](readme-images/winscp-07.png)
+
+![My Image](readme-images/winscp-08.png)
+
+![My Image](readme-images/winscp-09.png)
+
+
+USAGE PUTTY
+-----------
+
+> NOTE: Please replace value "100.25.164.251" with your cluster id. You can find it in section "USAGE EC2". 
+
+![My Image](readme-images/putty-01.png)
+
+![My Image](readme-images/putty-02.png)
+
+![My Image](readme-images/putty-03.png)
+
+![My Image](readme-images/putty-04.png)
+
+![My Image](readme-images/putty-05.png)
+
+![My Image](readme-images/putty-06.png)
+
+![My Image](readme-images/putty-07.png)
+
+![My Image](readme-images/putty-08.png)
+
+
+USAGE BROWSER
+-------------
+
+> NOTE: Please replace value "100.25.164.251" with your cluster id. You can find it in section "USAGE EC2". 
+
+![My Image](readme-images/browser-01.png)
+
+![My Image](readme-images/browser-02.png)
+
+![My Image](readme-images/browser-03.png)

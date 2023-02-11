@@ -59,7 +59,7 @@ PRECONDITIONS
 
 ##### Preconditions - Actions
 * Created AWS account 
-* Created IAM user with EC2 permissions. Please check section "CREATE IAM USER"
+* Created IAM user with EC2 permissions. Please check section **CREATE IAM USER**
 
 
 USAGE EC2

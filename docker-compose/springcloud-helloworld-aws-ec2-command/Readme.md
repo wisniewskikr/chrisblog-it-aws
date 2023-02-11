@@ -2,7 +2,7 @@ USAGE
 -----
 
 Steps:
-1. Configure AWS EC2. Cluster of AWS EC2 is set up and docker and docker compose are installed there. Please check section **USAGE EC2**
+1. Configure AWS EC2. Cluster of AWS EC2 is set up. Docker and docker compose are installed there. Please check section **USAGE EC2**
 1. Configure AWS Security Group. Ports of services have to be opened. Please check section **USAGE SECURITY GROUP**
 1. Generate PPK file from PEM file. Please check section **USAGE PUTTYGEN**
 1. Deploy file "docker-compose.yaml" on AWS EC2. Please check section **USAGE WINSCP**
@@ -58,7 +58,8 @@ PRECONDITIONS
 * Installed **WinSCP** (tested on version 5.21.7)
 
 ##### Preconditions - Actions
-* Created AWS account with EC2 permissions
+* Created AWS account 
+* Created IAM user with EC2 permissions. Please check section "CREATE IAM USER"
 
 
 USAGE EC2
@@ -203,3 +204,31 @@ USAGE BROWSER
 ![My Image](readme-images/browser-02.png)
 
 ![My Image](readme-images/browser-03.png)
+
+
+CREATE IAM USER
+---------------
+
+![My Image](readme-images/account-01.png)
+
+![My Image](readme-images/account-02.png)
+
+![My Image](readme-images/account-03.png)
+
+![My Image](readme-images/account-04.png)
+
+![My Image](readme-images/account-05.png)
+
+![My Image](readme-images/account-06.png)
+
+![My Image](readme-images/account-07.png)
+
+![My Image](readme-images/account-08.png)
+
+![My Image](readme-images/account-09.png)
+
+![My Image](readme-images/account-10.png)
+
+![My Image](readme-images/account-11.png)
+
+![My Image](readme-images/account-12.png)

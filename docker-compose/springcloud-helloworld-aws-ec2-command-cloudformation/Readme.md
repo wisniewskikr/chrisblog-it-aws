@@ -1,14 +1,14 @@
 USAGE
 -----
 
-> **NOTE** Please use **bash** command line tool (for instance "Git Bash").
+> **NOTE** Please use **bash** command line tool (for instance "Git Bash"). Be aware that all AWS elements will be installed in zone **us-east-1**.
 
 Steps:
 1. Create AWS elements with `.\create-stack.sh`
-1. Check AWS stack status. Please check section **USAGE CLOUD FORMATION**
-1. Check AWS EC2. Please check section **USAGE EC2**
-1. Test microservices (ports: 8761, 8762, 8080). Please check section **USAGE BROWSER**
-1. Remove all AWS elements with `.\delete-stack.sh`
+1. Verify AWS Cloud Formation stack status. Please check section **USAGE CLOUD FORMATION**
+1. Verify AWS EC2. Please check section **USAGE EC2**
+1. Verify microservices (ports: 8761, 8762, 8080). Please check section **USAGE BROWSER**
+1. Remove AWS elements with `.\delete-stack.sh`
 
 
 DESCRIPTION
@@ -54,7 +54,8 @@ PRECONDITIONS
 
 ##### Preconditions - Tools
 * Installed **Operating System** (tested on Windows 10)
-* Installed **AWS Cli**
+* Installed **AWS Cli**. Please check section **INSTALL AWS CLI**
+* Installed **bash** command line tool (for instance "Git Bash")
 
 ##### Preconditions - Actions
 * Created AWS account 
@@ -123,3 +124,29 @@ CREATE IAM USER
 ![My Image](readme-images/account-11.png)
 
 ![My Image](readme-images/account-12.png)
+
+
+INSTALL AWS CLI
+---------------
+
+![My Image](readme-images/cli-01.png)
+
+![My Image](readme-images/cli-02.png)
+
+![My Image](readme-images/cli-03.png)
+
+![My Image](readme-images/cli-04.png)
+
+![My Image](readme-images/cli-05.png)
+
+![My Image](readme-images/cli-06.png)
+
+![My Image](readme-images/cli-07.png)
+
+![My Image](readme-images/cli-08.png)
+
+![My Image](readme-images/cli-09.png)
+
+![My Image](readme-images/cli-10.png)
+
+![My Image](readme-images/cli-11.png)

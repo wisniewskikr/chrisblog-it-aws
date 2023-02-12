@@ -16,7 +16,8 @@ Resources:
       ImageId: !Ref AmazonLinux2AMI
       InstanceType: t2.micro
       Tags: 
-        - Name: springcloud-helloworld-aws-ec2-command-cloudformation
+        - Key: "Name"
+          Value: "springcloud-helloworld-aws-ec2-command-cloudformation"
       UserData: 
         Fn::Base64:
           | 

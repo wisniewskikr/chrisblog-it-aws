@@ -1,21 +1,21 @@
 USAGE
 -----
 
+> **NOTE** Please use **bash** command line tool (for instance "Git Bash").
+
 Steps:
-1. Configure AWS EC2. Cluster of AWS EC2 is set up. Docker and docker compose are installed there. Please check section **USAGE EC2**
-1. Configure AWS Security Group. Ports of services have to be opened. Please check section **USAGE SECURITY GROUP**
-1. Generate PPK file from PEM file. Please check section **USAGE PUTTYGEN**
-1. Deploy file "docker-compose.yaml" on AWS EC2. Please check section **USAGE WINSCP**
-1. Start docker containers on AWS EC2. Please check section **USAGE PUTTY**
-1. Test solution in the browser. Please check section **USAGE BROWSER**
-1. Clean AWS EC2. Please check section **CLEAN EC2**
+1. Create AWS elements with `.\create-stack.sh`
+1. Check AWS stack status. Please check section **USAGE CLOUD FORMATION**
+1. Check AWS EC2. Please check section **USAGE EC2**
+1. Test microservices (ports: 8761, 8762, 8080). Please check section **USAGE BROWSER**
+1. Remove all AWS elements with `.\delete-stack.sh`
 
 
 DESCRIPTION
 -----------
 
 ##### Goal
-The goal of this project is to present how to deploy **microservices** on **AWS** cloud service type **EC2**. These microservices are created in **Java** programming language with usage **Spring Boot Cloud** framework. Docker images of these microservices are built with usage **docker compose** tool. Configuration of AWS EC2 is done manually. Deployment YAML file and usage docker compose is done by SSH.
+The goal of this project is to present how to deploy **microservices** on **AWS** cloud service type **EC2**. These microservices are created in **Java** programming language with usage **Spring Boot Cloud** framework. Docker images of these microservices are built with usage **docker compose** tool. Configuration of AWS EC2 is done automatically by **AWS Cloud Formation** service.
 
 ##### Services
 This project consists of following services:
@@ -54,13 +54,22 @@ PRECONDITIONS
 
 ##### Preconditions - Tools
 * Installed **Operating System** (tested on Windows 10)
-* Installed **Putty** (tested on version 0.78)
-* Installed **PuttyGen** (tested on version 0.78)
-* Installed **WinSCP** (tested on version 5.21.7)
+* Installed **AWS Cli**
 
 ##### Preconditions - Actions
 * Created AWS account 
 * Created IAM user with EC2 permissions. Please check section **CREATE IAM USER**
+
+
+USAGE CLOUD FORMATION
+---------------------
+
+AWS Console:
+* https://console.aws.amazon.com/
+
+![My Image](readme-images/cloudformation-01.png)
+
+![My Image](readme-images/cloudformation-02.png)
 
 
 USAGE EC2
@@ -69,160 +78,23 @@ USAGE EC2
 AWS Console:
 * https://console.aws.amazon.com/
 
-Code in section "User Data":
-
-```
-#!/bin/bash
-set -x
-yum update -y
-
-# Install Docker
-amazon-linux-extras install docker -y
-service docker start
-systemctl enable docker
-usermod -a -G docker ec2-user
- chmod 666 /var/run/docker.sock
-
-# Install Docker Compose
-curl -L https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-
-```
-
 ![My Image](readme-images/ec2-01.png)
 
 ![My Image](readme-images/ec2-02.png)
 
 ![My Image](readme-images/ec2-03.png)
 
-![My Image](readme-images/ec2-04.png)
-
-![My Image](readme-images/ec2-05.png)
-
-![My Image](readme-images/ec2-06.png)
-
-![My Image](readme-images/ec2-07.png)
-
-![My Image](readme-images/ec2-08.png)
-
-![My Image](readme-images/ec2-09.png)
-
-![My Image](readme-images/ec2-10.png)
-
-![My Image](readme-images/ec2-11.png)
-
-![My Image](readme-images/ec2-12.png)
-
-![My Image](readme-images/ec2-13.png)
-
-
-USAGE SECURITY GROUP
---------------------
-
-AWS Console:
-* https://console.aws.amazon.com/
-
-![My Image](readme-images/sg-01.png)
-
-![My Image](readme-images/sg-02.png)
-
-![My Image](readme-images/sg-03.png)
-
-![My Image](readme-images/sg-04.png)
-
-
-USAGE PUTTYGEN
---------------
-
-![My Image](readme-images/puttygen-01.png)
-
-![My Image](readme-images/puttygen-02.png)
-
-![My Image](readme-images/puttygen-03.png)
-
-![My Image](readme-images/puttygen-04.png)
-
-![My Image](readme-images/puttygen-05.png)
-
-![My Image](readme-images/puttygen-06.png)
-
-![My Image](readme-images/puttygen-07.png)
-
-
-USAGE WINSCP
-------------
-
-> NOTE: Please replace value "100.25.164.251" with your cluster id. You can find it in section "USAGE EC2". 
-
-![My Image](readme-images/winscp-01.png)
-
-![My Image](readme-images/winscp-02.png)
-
-![My Image](readme-images/winscp-03.png)
-
-![My Image](readme-images/winscp-04.png)
-
-![My Image](readme-images/winscp-05.png)
-
-![My Image](readme-images/winscp-06.png)
-
-![My Image](readme-images/winscp-07.png)
-
-![My Image](readme-images/winscp-08.png)
-
-![My Image](readme-images/winscp-09.png)
-
-
-USAGE PUTTY
------------
-
-> NOTE: Please replace value "100.25.164.251" with your cluster id. You can find it in section "USAGE EC2". 
-
-![My Image](readme-images/putty-01.png)
-
-![My Image](readme-images/putty-02.png)
-
-![My Image](readme-images/putty-03.png)
-
-![My Image](readme-images/putty-04.png)
-
-![My Image](readme-images/putty-05.png)
-
-![My Image](readme-images/putty-06.png)
-
-![My Image](readme-images/putty-07.png)
-
-![My Image](readme-images/putty-08.png)
-
 
 USAGE BROWSER
--------------
+--------------
 
-> NOTE: Please replace value "100.25.164.251" with your cluster id. You can find it in section "USAGE EC2". 
+> NOTE: Please replace value "54.165.37.73" with your cluster id. You can find it in section "USAGE EC2".
 
 ![My Image](readme-images/browser-01.png)
 
 ![My Image](readme-images/browser-02.png)
 
 ![My Image](readme-images/browser-03.png)
-
-
-CLEAN EC2
----------
-
-![My Image](readme-images/ec2-clean-01.png)
-
-![My Image](readme-images/ec2-clean-02.png)
-
-![My Image](readme-images/ec2-clean-03.png)
-
-![My Image](readme-images/ec2-clean-04.png)
-
-![My Image](readme-images/ec2-clean-05.png)
-
-![My Image](readme-images/ec2-clean-06.png)
-
-![My Image](readme-images/ec2-clean-07.png)
 
 
 CREATE IAM USER

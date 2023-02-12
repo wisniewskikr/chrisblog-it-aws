@@ -29,26 +29,23 @@ Resources:
           chmod 666 /var/run/docker.sock
 
           # Install Docker Compose
-          curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+          curl -L https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
           chmod +x /usr/local/bin/docker-compose
-
-          # Mount Drive
-          mkdir /data
-          mkfs -t xfs /dev/xvdh
-          mount /dev/xvdh /data
 
           # Install git in your EC2 instance
           yum install git -y
 
           # Clone and run a sample application
           cd ~
-          git clone https://github.com/kobbikobb/guessthename.git
-          cd guessthename
-          docker-compose --file docker-compose-explicit.yaml up
+          git clone https://github.com/wisniewskikr/chrisblog-it-aws.git
+          cd chrisblog-it-aws/docker-compose/springcloud-helloworld-aws-ec2-command-cloudformation
+          docker-compose up
 
       SecurityGroups:
         - !Ref SSHSecurityGroup
-        - !Ref HTTPSecurityGroup
+        - !Ref GatewaySecurityGroup
+        - !Ref HelloWorldSecurityGroup
+        - !Ref DiscoverySecurityGroup
 
   SSHSecurityGroup:
     Type: AWS::EC2::SecurityGroup
@@ -60,31 +57,32 @@ Resources:
         ToPort: 22
         IpProtocol: tcp
 
-  HTTPSecurityGroup:
+  GatewaySecurityGroup:
     Type: "AWS::EC2::SecurityGroup"
     Properties:
       GroupDescription: Enable standard web access
       SecurityGroupIngress:
         - CidrIp: "0.0.0.0/0"
-          FromPort: 80
-          ToPort: 80
+          FromPort: 8762
+          ToPort: 8762
           IpProtocol: tcp
-
-  ExternalVolume:
-    Type: AWS::EC2::Volume
-    Properties: 
-      AvailabilityZone: !Ref AvailabilityZone
-      Size: 4
-      VolumeType: gp2
-
-  MountPoint:
-    Type: AWS::EC2::VolumeAttachment
+          
+  HelloWorldSecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
     Properties:
-      InstanceId: !Ref DockerComposeInstance
-      VolumeId: !Ref ExternalVolume
-      Device: /dev/xvdh
-
-  ElasticIp:
-    Type: AWS::EC2::EIP
+      GroupDescription: Enable standard web access
+      SecurityGroupIngress:
+        - CidrIp: "0.0.0.0/0"
+          FromPort: 8080
+          ToPort: 8080
+          IpProtocol: tcp
+          
+  DiscoverySecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
     Properties:
-      InstanceId: !Ref DockerComposeInstance
+      GroupDescription: Enable standard web access
+      SecurityGroupIngress:
+        - CidrIp: "0.0.0.0/0"
+          FromPort: 8761
+          ToPort: 8761
+          IpProtocol: tcp

@@ -8,6 +8,7 @@ Steps:
 1. Deploy file "docker-compose.yaml" on AWS EC2. Please check section **USAGE WINSCP**
 1. Start docker containers on AWS EC2. Please check section **USAGE PUTTY**
 1. Test solution in the browser. Please check section **USAGE BROWSER**
+1. Clean AWS EC2. Please check section **CLEAN EC2**
 
 
 DESCRIPTION
@@ -204,6 +205,24 @@ USAGE BROWSER
 ![My Image](readme-images/browser-02.png)
 
 ![My Image](readme-images/browser-03.png)
+
+
+CLEAN EC2
+---------
+
+![My Image](readme-images/ec2-clean-01.png)
+
+![My Image](readme-images/ec2-clean-02.png)
+
+![My Image](readme-images/ec2-clean-03.png)
+
+![My Image](readme-images/ec2-clean-04.png)
+
+![My Image](readme-images/ec2-clean-05.png)
+
+![My Image](readme-images/ec2-clean-06.png)
+
+![My Image](readme-images/ec2-clean-07.png)
 
 
 CREATE IAM USER

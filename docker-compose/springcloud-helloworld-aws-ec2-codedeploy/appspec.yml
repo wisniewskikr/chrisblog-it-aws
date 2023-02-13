@@ -13,6 +13,6 @@ files:
     destination: /home/ec2-user/service-helloworld/
 hooks:
   AfterInstall:
-    - location: install.sh
+    - location: scripts/codedeploy/install.sh
       timeout: 300
       runas: ec2-user

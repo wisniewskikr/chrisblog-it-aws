@@ -1,3 +1,19 @@
+* dos2unix scripts/cloudformation/ec2/create-ec2-stack.sh
+* ./scripts/cloudformation/ec2/create-ec2-stack.sh
+
+* dos2unix scripts/cloudformation/codedeploy/create-codedeploy-stack.sh
+* ./scripts/cloudformation/codedeploy/create-codedeploy-stack.sh
+
+* dos2unix scripts/s3/create-s3.sh
+* ./scripts/s3/create-s3.sh
+
+* dos2unix scripts/codedeploy/install.sh
+* dos2unix scripts/s3/copy-deployment-to-s3.sh
+* ./scripts/s3/copy-deployment-to-s3.sh
+
+* dos2unix scripts/codedeploy/create-deployment.sh
+* ./scripts/codedeploy/create-deployment.sh
+
 USAGE
 -----
 

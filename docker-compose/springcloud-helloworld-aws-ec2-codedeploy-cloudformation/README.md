@@ -1,12 +1,7 @@
-TODO
-----
-
-* remove s3 scrip
-* install aws cli
-
-
 USAGE
 -----
+
+> **NOTE** This usage assumes that user has created **AWS account** and he/she is connected with this account via **AWS Cli**. User uses also **bash** command line tool (for instance "Git Bash"), not Windows one. Please be aware that all AWS elements will be installed in zone **us-east-1**.
 
 Steps:
 1. Create AWS EC2 using CloudFormation stack with `./scripts/cloudformation/ec2/create-ec2-stack.sh`
@@ -14,7 +9,7 @@ Steps:
 1. Create AWS S3 bucket with `./scripts/s3/create-s3.sh`
 1. (Optional) Remove DOS signs from file "install.sh" with `dos2unix scripts/codedeploy/install.sh`
 1. Build and copy package with code to AWS S3 with `./scripts/s3/copy-deployment-to-s3.sh`
-     * It assumes thay you have zipping tool "7z" installed in location "/C/IT/7-Zip/7z.ex". If you have tool in other location then please update file "/scripts/s3/copy-deployment-to-s3.sh" with this new location
+     * It assumes that user has zipping tool "7z" installed in location "/C/IT/7-Zip/7z.ex". If user installed this tool in other location then please update file "/scripts/s3/copy-deployment-to-s3.sh" with this new location
 1. Start deployment from AWS S3 to AWS EC2 with `./scripts/codedeploy/create-deployment.sh`
 1. Verify service HelloWorld via service Gateway with `http://{ec2-public-IPv4-address}:8762`
 1. (Optional) Verify service HelloWorld directly with `http://{ec2-public-IPv4-address}:8080`
@@ -29,9 +24,11 @@ DESCRIPTION
 -----------
 
 ##### Goal
-The goal of this project is to present how to deploy **microservices** on **AWS** cloud service type **EC2**. These microservices are created in **Java** programming language with usage **Spring Boot Cloud** framework. Docker images of these microservices are built with usage **docker compose** tool. Configuration of AWS EC2 is done by **AWS Code Deploy**. 
+The goal of this project is to present how to deploy **microservices** on **AWS** cloud service type **EC2**. These microservices are created in **Java** programming language with usage **Spring Boot Cloud** framework. Docker images of these microservices are built with usage **docker compose** tool. Configuration of AWS EC2 is done by **AWS Code Deploy** and **AWS Cloud Formation**.. 
 
 AWS Code Deploy takes code from AWS S3 as ZIP package and deploys it on AWS EC2. Endpoint for deployment is file **appspec.yml** (copies resources from package to AWS EC2) and this file redirects action to file **install.sh** (installation resources on AWS EC2).
+
+AWS Cloud Formation enables to create AWS elements from command line via AWS Cli. Elements are created as so called "stacks".
 
 ##### Services
 This project consists of following services:
@@ -71,6 +68,8 @@ PRECONDITIONS
 ##### Preconditions - Tools
 * Installed **Operating System** (tested on Windows 10)
 * Installed **7Zip**
+* Installed **AWS Cli**. Please check section **INSTALL AWS CLI**
+* Installed **bash** command line tool (for instance "Git Bash")
 
 ##### Preconditions - Actions
 * Created AWS account 
@@ -103,3 +102,29 @@ CONFIGURATION AWS ACCOUNT
 ![My Image](readme-images/account-11.png)
 
 ![My Image](readme-images/account-12.png)
+
+
+INSTALL AWS CLI
+---------------
+
+![My Image](readme-images/cli-01.png)
+
+![My Image](readme-images/cli-02.png)
+
+![My Image](readme-images/cli-03.png)
+
+![My Image](readme-images/cli-04.png)
+
+![My Image](readme-images/cli-05.png)
+
+![My Image](readme-images/cli-06.png)
+
+![My Image](readme-images/cli-07.png)
+
+![My Image](readme-images/cli-08.png)
+
+![My Image](readme-images/cli-09.png)
+
+![My Image](readme-images/cli-10.png)
+
+![My Image](readme-images/cli-11.png)

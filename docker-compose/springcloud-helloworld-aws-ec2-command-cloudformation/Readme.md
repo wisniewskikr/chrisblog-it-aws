@@ -1,7 +1,7 @@
 USAGE
 -----
 
-> **NOTE** Please use **bash** command line tool (for instance "Git Bash"). Be aware that all AWS elements will be installed in zone **us-east-1**.
+> **NOTE** This usage assumes that user has created **AWS account** and he/she is connected with this account via **AWS Cli**. User uses also **bash** command line tool (for instance "Git Bash"), not Windows one. Please be aware that all AWS elements will be installed in zone **us-east-1**.
 
 Steps:
 1. Create AWS elements with `.\create-stack.sh`

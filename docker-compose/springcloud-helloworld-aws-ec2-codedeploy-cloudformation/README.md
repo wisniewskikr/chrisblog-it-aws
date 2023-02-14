@@ -1,30 +1,20 @@
-* dos2unix scripts/cloudformation/ec2/create-ec2-stack.sh
-* ./scripts/cloudformation/ec2/create-ec2-stack.sh
-
-* dos2unix scripts/cloudformation/codedeploy/create-codedeploy-stack.sh
-* ./scripts/cloudformation/codedeploy/create-codedeploy-stack.sh
-
-* dos2unix scripts/s3/create-s3.sh
-* ./scripts/s3/create-s3.sh
-
-* dos2unix scripts/codedeploy/install.sh
-* dos2unix scripts/s3/copy-deployment-to-s3.sh
-* ./scripts/s3/copy-deployment-to-s3.sh
-
-* dos2unix scripts/codedeploy/create-deployment.sh
-* ./scripts/codedeploy/create-deployment.sh
-
 USAGE
 -----
 
 Steps:
-1. Configure AWS AIM for EC2 and CodeDeploy. Please check section **CONFIGURATION AIM**
-1. Configure Security Group for EC2. Please check section **CONFIGURATION EC2 SECURITY GROUP**
-1. Configure AWS EC2. Please check section **CONFIGURATION EC2**
-1. Configure AWS S3. Please check section **CONFIGURATION S3**
-1. Prepare and deploy package on AWS S3. Please check section **CONFIGURATION PACKAGE**
-1. Configure AWS Code Deploy. Please check section **CONFIGURATION CODE DEPLOY**
-1. Verify result in the browser. Please check section **USAGE BROWSER**
+1. Create AWS EC2 using CloudFormation stack with `./scripts/cloudformation/ec2/create-ec2-stack.sh`
+1. Create AWS CodeDeploy using CloudFormation stack with `./scripts/cloudformation/codedeploy/create-codedeploy-stack.sh`
+1. Create AWS S3 bucket with `./scripts/s3/create-s3.sh`
+1. (Optional) Remove DOS signs from file "install.sh" with `dos2unix scripts/codedeploy/install.sh`
+1. Build and copy package with code to AWS S3 with `./scripts/s3/copy-deployment-to-s3.sh`
+1. Start deployment from AWS S3 to AWS EC2 with `./scripts/codedeploy/create-deployment.sh`
+1. Verify service HelloWorld via service Gateway with `http://{ec2-public-IPv4-address}:8762`
+1. (Optional) Verify service HelloWorld directly with `http://{ec2-public-IPv4-address}:8080`
+1. (Optional) Verify service Discovery with `http://{ec2-public-IPv4-address}:8761`
+1. Clean up AWS
+     * Delete AWS EC2 using CloudFormation stack with `./scripts/cloudformation/ec2/delete-ec2-stack.sh`
+     * Delete AWS CodeDeploy using CloudFormation stack with `./scripts/cloudformation/codedeploy/delete-codedeploy-stack.sh`
+
 
 DESCRIPTION
 -----------

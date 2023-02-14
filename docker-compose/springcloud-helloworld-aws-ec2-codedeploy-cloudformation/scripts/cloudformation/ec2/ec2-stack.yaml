@@ -13,7 +13,7 @@ Resources:
   EC2CodeDeployServiceRole:
     Type: AWS::IAM::Role
     Properties: 
-      RoleName: guessthename.ec2.service.role
+      RoleName: helloworld-ec2-role
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
@@ -30,7 +30,7 @@ Resources:
   EC2CodeDeployServiceProfile:
     Type: AWS::IAM::InstanceProfile
     Properties: 
-      InstanceProfileName: guessthename.ec2.service.profile
+      InstanceProfileName: helloworld-ec2-profile
       Path: /
       Roles: 
         - !Ref EC2CodeDeployServiceRole

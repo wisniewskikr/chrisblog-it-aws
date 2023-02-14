@@ -10,7 +10,7 @@ Resources:
   CodeDeployRole:
     Type: AWS::IAM::Role
     Properties: 
-      RoleName: guessthename.deploy.role
+      RoleName: helloworld-codedeploy-role
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
@@ -25,7 +25,7 @@ Resources:
         - "arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole"
         - "arn:aws:iam::aws:policy/AWSCodeDeployRoleForECS"
 
-  GuessthenameApplication:
+  HelloworldApplication:
     Type: AWS::CodeDeploy::Application
     Properties:
       ApplicationName: !Ref ApplicationName 
@@ -33,10 +33,10 @@ Resources:
 
   DeploymentGroup:
     Type: AWS::CodeDeploy::DeploymentGroup
-    DependsOn : GuessthenameApplication
+    DependsOn : HelloworldApplication
     Properties:
       ApplicationName: !Ref ApplicationName
-      DeploymentGroupName: guessthename-dev
+      DeploymentGroupName: helloworld-dev
       ServiceRoleArn: !GetAtt CodeDeployRole.Arn
       Ec2TagFilters:
         - Key: Environment

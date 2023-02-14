@@ -1,0 +1,1 @@
+aws cloudformation create-stack --stack-name helloworld-codedeploy --template-body file://scripts/cloud-formation/codedeploy/codedeploy-stack.yaml --capabilities CAPABILITY_NAMED_IAM --region us-east-1

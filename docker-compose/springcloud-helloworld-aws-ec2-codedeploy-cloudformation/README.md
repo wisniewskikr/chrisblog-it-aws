@@ -1,8 +1,6 @@
 TODO
 ----
 
-* zip to "target"
-* "target" to .gitignore
 * remove s3 scrip
 * install aws cli
 
@@ -24,6 +22,7 @@ Steps:
 1. Clean up AWS
      * Delete AWS EC2 using CloudFormation stack with `./scripts/cloudformation/ec2/delete-ec2-stack.sh`
      * Delete AWS CodeDeploy using CloudFormation stack with `./scripts/cloudformation/codedeploy/delete-codedeploy-stack.sh`
+     * Delete AWS S3 with `./scripts/s3/delete-s3.sh`
 
 
 DESCRIPTION

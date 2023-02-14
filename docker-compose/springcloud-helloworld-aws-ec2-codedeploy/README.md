@@ -254,6 +254,41 @@ USAGE BROWSER
 ![My Image](readme-images/browser-06.png)
 
 
+CLEAN
+-----
+
+![My Image](readme-images/clean-01.png)
+
+![My Image](readme-images/clean-02.png)
+
+![My Image](readme-images/clean-03.png)
+
+![My Image](readme-images/clean-04.png)
+
+![My Image](readme-images/clean-05.png)
+
+![My Image](readme-images/clean-06.png)
+
+![My Image](readme-images/clean-07.png)
+
+![My Image](readme-images/clean-08.png)
+
+![My Image](readme-images/clean-09.png)
+
+![My Image](readme-images/clean-10.png)
+
+![My Image](readme-images/clean-11.png)
+
+![My Image](readme-images/clean-12.png)
+
+![My Image](readme-images/clean-13.png)
+
+![My Image](readme-images/clean-14.png)
+
+![My Image](readme-images/clean-15.png)
+
+
+
 CONFIGURATION AWS ACCOUNT
 -------------------------
 

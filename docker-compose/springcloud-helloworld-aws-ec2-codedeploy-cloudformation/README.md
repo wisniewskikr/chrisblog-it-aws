@@ -7,6 +7,7 @@ Steps:
 1. Create AWS S3 bucket with `./scripts/s3/create-s3.sh`
 1. (Optional) Remove DOS signs from file "install.sh" with `dos2unix scripts/codedeploy/install.sh`
 1. Build and copy package with code to AWS S3 with `./scripts/s3/copy-deployment-to-s3.sh`
+     * It assumes thay you have zipping tool "7z" installed in location "/C/IT/7-Zip/7z.ex". If you have tool in other location then please update file "/scripts/s3/copy-deployment-to-s3.sh" with this new location
 1. Start deployment from AWS S3 to AWS EC2 with `./scripts/codedeploy/create-deployment.sh`
 1. Verify service HelloWorld via service Gateway with `http://{ec2-public-IPv4-address}:8762`
 1. (Optional) Verify service HelloWorld directly with `http://{ec2-public-IPv4-address}:8080`

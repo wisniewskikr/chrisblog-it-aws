@@ -1,0 +1,122 @@
+---
+Parameters:
+
+  AvailabilityZone:
+    Type: String
+    Default: us-east-1a
+  AmazonLinux2AMI:
+    Type: String
+    Default: ami-0b5eea76982371e91
+
+Resources:
+
+  EC2CodeDeployServiceRole:
+    Type: AWS::IAM::Role
+    Properties: 
+      RoleName: helloworld-ec2-role
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - ec2.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: /
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+
+  EC2CodeDeployServiceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties: 
+      InstanceProfileName: helloworld-ec2-profile
+      Path: /
+      Roles: 
+        - !Ref EC2CodeDeployServiceRole
+
+  DockerComposeInstance:
+    Type: AWS::EC2::Instance
+    DependsOn: EC2CodeDeployServiceRole
+    Properties:
+      AvailabilityZone: !Ref AvailabilityZone
+      ImageId: !Ref AmazonLinux2AMI
+      InstanceType: t2.micro
+      IamInstanceProfile: !Ref EC2CodeDeployServiceProfile
+      SecurityGroups:
+        - !Ref SSHSecurityGroup
+        - !Ref HTTPSecurityGroup
+      Tags:
+        - Key: Environment
+          Value: Dev
+        - Key: Application
+          Value: helloworld
+      UserData: 
+        Fn::Base64:
+          | 
+         #!/bin/bash
+         yum update -y
+         yum install -y ruby
+
+         # Install Docker
+         amazon-linux-extras install docker -y
+         service docker start
+         systemctl enable docker
+         usermod -a -G docker ec2-user
+         chmod 666 /var/run/docker.sock
+
+         # Install Docker Compose
+         curl -L https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+         chmod +x /usr/local/bin/docker-compose
+
+         # Install code deploy agent
+         # Verify agent: sudo service codedeploy-agent status
+         wget https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/latest/install
+         chmod +x ./install
+         ./install auto
+
+      SecurityGroups:
+        - !Ref SSHSecurityGroup
+        - !Ref GatewaySecurityGroup
+        - !Ref HelloWorldSecurityGroup
+        - !Ref DiscoverySecurityGroup
+
+  SSHSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable SSH access via port 22
+      SecurityGroupIngress:
+      - CidrIp: 0.0.0.0/0
+        FromPort: 22
+        ToPort: 22
+        IpProtocol: tcp
+
+  GatewaySecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupDescription: Enable standard web access
+      SecurityGroupIngress:
+        - CidrIp: "0.0.0.0/0"
+          FromPort: 8762
+          ToPort: 8762
+          IpProtocol: tcp
+          
+  HelloWorldSecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupDescription: Enable standard web access
+      SecurityGroupIngress:
+        - CidrIp: "0.0.0.0/0"
+          FromPort: 8080
+          ToPort: 8080
+          IpProtocol: tcp
+          
+  DiscoverySecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupDescription: Enable standard web access
+      SecurityGroupIngress:
+        - CidrIp: "0.0.0.0/0"
+          FromPort: 8761
+          ToPort: 8761
+          IpProtocol: tcp

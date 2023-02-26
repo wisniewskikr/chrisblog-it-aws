@@ -1,16 +1,27 @@
----
 Parameters:
 
   ApplicationName:
     Type: String
     Default: helloworld-codedeploy-application
+  CodeDeployRoleName:
+    Type: String
+    Default: helloworld-codedeploy-role
+  DeploymentGroupName:
+    Type: String
+    Default: helloworld-dev
+  EnvironmentTag:
+    Type: String
+    Default: Dev
+  ApplicationTag:
+    Type: String
+    Default: helloworld
 
 Resources:
 
   CodeDeployRole:
     Type: AWS::IAM::Role
     Properties: 
-      RoleName: helloworld-codedeploy-role
+      RoleName: !Ref CodeDeployRoleName
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
@@ -36,12 +47,12 @@ Resources:
     DependsOn : HelloworldApplication
     Properties:
       ApplicationName: !Ref ApplicationName
-      DeploymentGroupName: helloworld-dev
+      DeploymentGroupName: !Ref DeploymentGroupName
       ServiceRoleArn: !GetAtt CodeDeployRole.Arn
       Ec2TagFilters:
         - Key: Environment
-          Value: Dev
+          Value: !Ref EnvironmentTag
           Type: KEY_AND_VALUE
         - Key: Application
-          Value: helloworld
+          Value: !Ref ApplicationTag
           Type: KEY_AND_VALUE

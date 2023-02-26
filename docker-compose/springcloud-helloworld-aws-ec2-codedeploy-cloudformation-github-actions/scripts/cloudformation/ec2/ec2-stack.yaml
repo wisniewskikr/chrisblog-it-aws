@@ -1,4 +1,3 @@
----
 Parameters:
 
   AvailabilityZone:
@@ -7,13 +6,25 @@ Parameters:
   AmazonLinux2AMI:
     Type: String
     Default: ami-0b5eea76982371e91
+  EC2Role:
+    Type: String
+    Default: helloworld-ec2-role
+  EC2Profile:
+    Type: String
+    Default: helloworld-ec2-profile1
+  EnvironmentTag:
+    Type: String
+    Default: Dev
+  ApplicationTag:
+    Type: String
+    Default: helloworld
 
 Resources:
 
   EC2CodeDeployServiceRole:
     Type: AWS::IAM::Role
     Properties: 
-      RoleName: helloworld-ec2-role
+      RoleName: !Ref EC2Role
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
@@ -30,7 +41,7 @@ Resources:
   EC2CodeDeployServiceProfile:
     Type: AWS::IAM::InstanceProfile
     Properties: 
-      InstanceProfileName: helloworld-ec2-profile
+      InstanceProfileName: !Ref EC2Profile
       Path: /
       Roles: 
         - !Ref EC2CodeDeployServiceRole
@@ -48,9 +59,9 @@ Resources:
         - !Ref HTTPSecurityGroup
       Tags:
         - Key: Environment
-          Value: Dev
+          Value: !Ref EnvironmentTag
         - Key: Application
-          Value: helloworld
+          Value: !Ref ApplicationTag
       UserData: 
         Fn::Base64:
           | 

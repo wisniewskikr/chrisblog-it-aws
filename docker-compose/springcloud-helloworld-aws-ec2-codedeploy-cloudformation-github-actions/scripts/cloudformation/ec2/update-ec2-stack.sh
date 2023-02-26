@@ -1,0 +1,1 @@
+aws cloudformation update-stack --stack-name helloworld-ec2 --template-body file://scripts/cloudformation/ec2/ec2-stack.yaml --capabilities CAPABILITY_NAMED_IAM --region us-east-1

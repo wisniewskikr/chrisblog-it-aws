@@ -1,0 +1,18 @@
+version: 0.0
+os: linux
+files:
+  - source: /docker-compose.yml
+    destination: /home/ec2-user/
+  - source: /pom.xml
+    destination: /home/ec2-user/
+  - source: /service-discovery
+    destination: /home/ec2-user/service-discovery/
+  - source: /service-gateway
+    destination: /home/ec2-user/service-gateway/
+  - source: /service-helloworld
+    destination: /home/ec2-user/service-helloworld/
+hooks:
+  AfterInstall:
+    - location: scripts/codedeploy/install.sh
+      timeout: 300
+      runas: ec2-user

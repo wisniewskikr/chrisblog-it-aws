@@ -5,6 +5,7 @@ USAGE
 
 Steps:
 1. Create new AWS docker context with `docker context create ecs myecs`
+1. Use arrows to choose **An existing AWS profile**
 1. Switch to new AWS docker context with `docker context use myecs` 
 1. (Optional) Check AWS docker contexts with `docker context ls`
 1. Launch microservices with `docker compose up`

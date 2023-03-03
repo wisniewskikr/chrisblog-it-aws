@@ -25,9 +25,6 @@ Please be aware that Gateway API does not work here. AWS ECS uses it's own Load 
 
 ##### Services
 This project consists of following services:
-* **Service Discovery**: port **8761**. This service contains information about all services registered in the system. Main tasks:
-     * **Checking status**: this service can be used to check status of services in the system 
-     * **Load balancing**: this service can be used by load balancers to identify services and their instances in the system
 * **Service HelloWorld**: port **8080**. This service provides message, port and uuid
 
 ##### Flow

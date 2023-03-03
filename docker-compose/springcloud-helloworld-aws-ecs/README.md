@@ -9,8 +9,12 @@ Steps:
 1. Switch to new AWS docker context with `docker context use myecs` 
 1. (Optional) Check AWS docker contexts with `docker context ls`
 1. Launch microservices with `docker compose up`
+1. Configure AWS ECS. Please check section **CONFIGURATION AWS ECS**
+1. Verify microservice with `http://{DNS-name}:8080`
 1. Clean up AWS
      * Remove microservices with `docker compose down`
+     * Switch to default context with `docker context use default`
+     * Remove new AWS docker context with `docker context remove myecs`
 
 
 DESCRIPTION
@@ -58,6 +62,20 @@ PRECONDITIONS
 ##### Preconditions - Actions
 * Created AWS account 
 * Created IAM user with EC2 permissions. Please check section **CONFIGURATION AWS ACCOUNT**
+
+
+CONFIGURATION AWS ECS
+---------------------
+
+![My Image](readme-images/ecs-01.png)
+
+![My Image](readme-images/ecs-02.png)
+
+![My Image](readme-images/ecs-03.png)
+
+![My Image](readme-images/ecs-04.png)
+
+![My Image](readme-images/ecs-05.png)
 
 
 CONFIGURATION AWS ACCOUNT

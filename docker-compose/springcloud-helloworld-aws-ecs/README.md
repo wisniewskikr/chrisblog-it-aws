@@ -17,7 +17,11 @@ DESCRIPTION
 -----------
 
 ##### Goal
-The goal of this project is to present how to deploy **microservices** on **AWS** cloud service type **ECS**. These microservices are created in **Java** programming language with usage **Spring Boot Cloud** framework. Docker images of these microservices are built with usage **docker compose** tool. 
+The goal of this project is to present how to deploy **microservices** on **AWS** cloud service type **ECS**. These microservices are created in **Java** programming language with usage **Spring Boot Cloud** framework. Docker images of these microservices are built with usage **docker compose** tool.
+
+Please be aware that AWS ECS works only on Docker Images deployed on some public repository. It's not possible to create Docker Image from the scratch here.
+
+Please be aware that Gateway API does not work here. AWS ECS uses it's own Load Balancer. 
 
 ##### Services
 This project consists of following services:

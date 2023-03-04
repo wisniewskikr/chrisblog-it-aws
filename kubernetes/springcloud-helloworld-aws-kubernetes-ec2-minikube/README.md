@@ -1,3 +1,6 @@
+- kubectl apply -f https://github.com/wisniewskikr/chrisblog-it-aws/blob/main/kubernetes/springcloud-helloworld-aws-kubernetes-ec2-minikube/kubernetes.yaml
+
+
 USAGE
 -----
 

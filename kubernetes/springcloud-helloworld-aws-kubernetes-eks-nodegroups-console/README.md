@@ -6,7 +6,7 @@ USAGEUSAGE
 Steps:
 1. Create AWS EKS cluster. Please check secction **CONFIGURE AWS EKS CLUSTER**
 1. Create AWS EKS Node Groups. Please check section **CONFIGURE AWS EKS NODE GROUPS**
-1. Create Kubernetes Pods using Console:
+1. Create Kubernetes Pods using Console. Please check section **USE CONSOLE**
     * Connect with AWS STS with `aws sts get-caller-identity`
     * Update local kubeconfig file with `aws eks update-kubeconfig --region us-east-2 --name helloworld-eks`
     * Create Kubernetes nodes with `kubectl apply -f https://raw.githubusercontent.com/wisniewskikr/chrisblog-it-aws/main/kubernetes/springcloud-helloworld-aws-kubernetes-eks-nodegroups-console/kubernetes.yaml`
@@ -46,6 +46,7 @@ This project uses following technologies:
 * **Docker**: `https://docs.google.com/document/d/1tKdfZIrNhTNWjlWcqUkg4lteI91EhBvaj6VDrhpnCnk/edit?usp=sharing`
 * **Docker Compose**: `https://docs.google.com/document/d/1SPrCS5OS_G0je_wmcLGrX8cFv7ZkQbb5uztNc9kElS4/edit?usp=sharing`
 * **AWS**
+* **AWS CLI**
 * **kubectl**
 
 
@@ -54,6 +55,7 @@ PRECONDITIONS
 
 ##### Preconditions - Tools
 * Installed **Operating System** (tested on Windows 10)
+* Installed **AWS CLI** (tested on version 2.9.22)
 
 
 ##### Preconditions - Actions
@@ -65,8 +67,6 @@ CONFIGURE AWS EKS CLUSTER
 
 AWS link:
 * https://console.aws.amazon.com/
-
-User Data:
 
 ![My Image](readme-images/eks-cluster-01.png)
 
@@ -103,3 +103,52 @@ User Data:
 ![My Image](readme-images/eks-cluster-17.png)
 
 ![My Image](readme-images/eks-cluster-18.png)
+
+
+CONFIGURE AWS EKS NODE GROUPS
+-----------------------------
+
+AWS link:
+* https://console.aws.amazon.com/
+
+![My Image](readme-images/eks-rolenode-01.png)
+
+![My Image](readme-images/eks-rolenode-02.png)
+
+![My Image](readme-images/eks-rolenode-03.png)
+
+![My Image](readme-images/eks-rolenode-04.png)
+
+![My Image](readme-images/eks-rolenode-05.png)
+
+![My Image](readme-images/eks-rolenode-06.png)
+
+![My Image](readme-images/eks-rolenode-07.png)
+
+![My Image](readme-images/eks-rolenode-08.png)
+
+![My Image](readme-images/eks-rolenode-09.png)
+
+![My Image](readme-images/eks-rolenode-10.png)
+
+![My Image](readme-images/eks-rolenode-11.png)
+
+![My Image](readme-images/eks-rolenode-12.png)
+
+![My Image](readme-images/eks-rolenode-13.png)
+
+![My Image](readme-images/eks-rolenode-14.png)
+
+![My Image](readme-images/eks-rolenode-15.png)
+
+![My Image](readme-images/eks-rolenode-16.png)
+
+![My Image](readme-images/eks-rolenode-17.png)
+
+![My Image](readme-images/eks-rolenode-18.png)
+
+
+USE CONSOLE
+-----------
+
+![My Image](readme-images/console-01.png)

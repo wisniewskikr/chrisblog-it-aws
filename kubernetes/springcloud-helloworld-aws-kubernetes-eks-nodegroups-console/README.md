@@ -1,24 +1,28 @@
-USAGE
+USAGEUSAGE
 -----
 
-> **NOTE** This usage assumes that user has created **AWS account**. User uses also **Windows PowerShell** command line tool. Please be aware that all AWS elements will be installed in zone **us-east-1**.
+> **NOTE** Please use any command line tool to run commands below.
 
 Steps:
-1. Configure AWS EC2. Please check section **CONFIGURATION AWS EC2**
-1. Use AWS EC2 console. Please check section **CONSOLE AWS EC2**
-     * Start Minikube with `minikube start`
-     * Deploy microservices with `kubectl apply -f https://github.com/wisniewskikr/chrisblog-it-aws/blob/main/kubernetes/springcloud-helloworld-aws-kubernetes-ec2-minikube/kubernetes.yaml`
-     * Get microservice URL with `minikube service helloworld-service`
-     * Verify microservice with `curl {microservice-url}`
+1. Create AWS EKS cluster. Please check secction **CONFIGURE AWS EKS CLUSTER**
+1. Create AWS EKS Node Groups. Please check section **CONFIGURE AWS EKS NODE GROUPS**
+1. Create Kubernetes Pods using Console:
+    * Connect with AWS STS with `aws sts get-caller-identity`
+    * Update local kubeconfig file with `aws eks update-kubeconfig --region us-east-2 --name helloworld-eks`
+    * Create Kubernetes nodes with `kubectl apply -f https://raw.githubusercontent.com/wisniewskikr/chrisblog-it-aws/main/kubernetes/springcloud-helloworld-aws-kubernetes-eks-nodegroups-console/kubernetes.yaml`
+    * (Optional) Check if PODs are running with `kubectl get pods`
+    * Get external ip for service "helloworld-service" with `kubectl get svc`
+    * (Optional) Check DNS with **nslookup {EXTERNAL-IP}**. For instance `nslookup a580e1a8922a541c78c54920032fb658-282970723.us-east-2.elb.amazonaws.com`
+    * Verify microservice with **curl {EXTERNAL-IP}**. For instance `curl a580e1a8922a541c78c54920032fb658-282970723.us-east-2.elb.amazonaws.com`
 1. Clean up AWS
-     * Termiante AWS EC2. Please check section **TERMINATE AWS EC2** 
+     * Delete AWS EKS cluster with `eksctl delete cluster --name helloworld-eks --region us-east-2`
 
 
 DESCRIPTION
 -----------
 
 ##### Goal
-The goal of this project is to present how to deploy **microservices** on **AWS** cloud service type **EC2**. These microservices are created in **Java** programming language with usage **Spring Boot Cloud** framework. Docker images of these microservices are built with usage **Kubernetes** tool type **minikube**.
+The goal of this project is to present how to deploy **microservices** on **AWS** cloud service type **EKS Node Groups** using **AWS Console**. These microservices are created in **Java** programming language with usage **Spring Boot Cloud** framework. 
 
 ##### Services
 This project consists of following services:
@@ -26,8 +30,8 @@ This project consists of following services:
 
 ##### Flow
 The following flow takes place in this project:
-1. User via Browser sends request to Service HelloWorld for content
-1. Service HelloWorld sends back response to User via Browser with message, port and uuid
+1. User via Curl sends request to Service HelloWorld for content
+1. Service HelloWorld sends back response to User via Curl with message, port and uuid
 
 ##### Launch
 To launch this application please make sure that the **Preconditions** are met and then follow instructions from **Usage** section.
@@ -42,6 +46,7 @@ This project uses following technologies:
 * **Docker**: `https://docs.google.com/document/d/1tKdfZIrNhTNWjlWcqUkg4lteI91EhBvaj6VDrhpnCnk/edit?usp=sharing`
 * **Docker Compose**: `https://docs.google.com/document/d/1SPrCS5OS_G0je_wmcLGrX8cFv7ZkQbb5uztNc9kElS4/edit?usp=sharing`
 * **AWS**
+* **kubectl**
 
 
 PRECONDITIONS

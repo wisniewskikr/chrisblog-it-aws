@@ -8,6 +8,7 @@ Steps:
 1. Create Kubernetes nodes with `kubectl apply -f https://raw.githubusercontent.com/wisniewskikr/chrisblog-it-aws/main/kubernetes/springcloud-helloworld-aws-kubernetes-eks-nodegroups-eksctl/kubernetes.yaml`
 1. (Optional) Check if PODs are running with `kubectl get pods`
 1. Get external ip for service "helloworld-service" with `kubectl get svc`
+1. (Optional) Check DNS with **nslookup {EXTERNAL-IP}**. For instance `nslookup a580e1a8922a541c78c54920032fb658-282970723.us-east-2.elb.amazonaws.com`
 1. Verify microservice with **curl {EXTERNAL-IP}**. For instance `curl a580e1a8922a541c78c54920032fb658-282970723.us-east-2.elb.amazonaws.com`
 1. Clean up AWS
      * Delete AWS EKS cluster with `eksctl delete cluster --name helloworld-eks --region us-east-2`

@@ -60,80 +60,46 @@ PRECONDITIONS
 * Created AWS account 
 
 
-CONFIGURATION AWS EC2
----------------------
+CONFIGURE AWS EKS CLUSTER
+-------------------------
 
 AWS link:
 * https://console.aws.amazon.com/
 
 User Data:
 
-```
-#!/bin/bash
-yum update -y
+![My Image](readme-images/eks-cluster-01.png)
 
-# Install Docker
-amazon-linux-extras install docker -y
-service docker start
-systemctl enable docker
-usermod -a -G docker ec2-user
-chmod 666 /var/run/docker.sock
+![My Image](readme-images/eks-cluster-02.png)
 
-# Install kubectl
-curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
-chmod +x ./kubectl
-mv ./kubectl /usr/local/bin/kubectl
+![My Image](readme-images/eks-cluster-03.png)
 
-# Install minikube
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-chmod +x minikube
-mv minikube /usr/local/bin/minikube
-```
+![My Image](readme-images/eks-cluster-04.png)
 
-![My Image](readme-images/ec2-configuration-01.png)
+![My Image](readme-images/eks-cluster-05.png)
 
-![My Image](readme-images/ec2-configuration-02.png)
+![My Image](readme-images/eks-cluster-06.png)
 
-![My Image](readme-images/ec2-configuration-03.png)
+![My Image](readme-images/eks-cluster-07.png)
 
-![My Image](readme-images/ec2-configuration-04.png)
+![My Image](readme-images/eks-cluster-08.png)
 
-![My Image](readme-images/ec2-configuration-05.png)
+![My Image](readme-images/eks-cluster-09.png)
 
-![My Image](readme-images/ec2-configuration-06.png)
+![My Image](readme-images/eks-cluster-10.png)
 
-![My Image](readme-images/ec2-configuration-07.png)
+![My Image](readme-images/eks-cluster-11.png)
 
-![My Image](readme-images/ec2-configuration-08.png)
+![My Image](readme-images/eks-cluster-12.png)
 
-![My Image](readme-images/ec2-configuration-09.png)
+![My Image](readme-images/eks-cluster-13.png)
 
+![My Image](readme-images/eks-cluster-14.png)
 
-CONSOLE AWS EC2
----------------
+![My Image](readme-images/eks-cluster-15.png)
 
-AWS link:
-* https://console.aws.amazon.com/
+![My Image](readme-images/eks-cluster-16.png)
 
-![My Image](readme-images/ec2-console-01.png)
+![My Image](readme-images/eks-cluster-17.png)
 
-![My Image](readme-images/ec2-console-02.png)
-
-![My Image](readme-images/ec2-console-03.png)
-
-![My Image](readme-images/ec2-console-04.png)
-
-![My Image](readme-images/ec2-console-05.png)
-
-
-TERMINATE AWS EC2
-------------------
-
-AWS link:
-* https://console.aws.amazon.com/
-
-![My Image](readme-images/ec2-terminate-01.png)
-
-![My Image](readme-images/ec2-terminate-02.png)
-
-![My Image](readme-images/ec2-terminate-03.png)
+![My Image](readme-images/eks-cluster-18.png)

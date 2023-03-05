@@ -29,10 +29,20 @@ spec:
               path: /actuator/health
               port: 8080
             initialDelaySeconds: 5
-      restartPolicy: Always
-      
+      restartPolicy: Always      
 ---
-
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld-service
+spec:
+  selector:
+    app: helloworld-container
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8000
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -49,6 +59,6 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: helloworld-container
+              name: helloworld-service
               port:
                 number: 8080

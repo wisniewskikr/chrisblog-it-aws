@@ -36,17 +36,19 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  name: ingress-service
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
-    kubernetes.io/ingress.class: alb
-  labels:
-    app: ingress-service
-  name: ingress-service
+    alb.ingress.kubernetes.io/target-type: ip
 spec:
+  ingressClassName: alb
   rules:
-  - http:
-      paths:
-      - backend:
-          serviceName: helloworld-container
-          servicePort: 8080
-        path: /*
+    - http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: helloworld-container
+              port:
+                number: 8080

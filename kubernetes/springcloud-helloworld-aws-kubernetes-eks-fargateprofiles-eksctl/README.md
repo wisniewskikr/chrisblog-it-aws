@@ -5,7 +5,8 @@ USAGE
 
 Steps:
 1. Create AWS EKS cluster with `eksctl create cluster --name helloworld-eks --region us-east-2 --fargate`
-1. Create Kubernetes nodes with `kubectl apply -f https://raw.githubusercontent.com/wisniewskikr/chrisblog-it-aws/main/kubernetes/springcloud-helloworld-aws-kubernetes-eks-nodegroups-eksctl/kubernetes.yaml`
+1. Create Kubernetes nodes with `kubectl apply -f https://raw.githubusercontent.com/wisniewskikr/chrisblog-it-aws/main/kubernetes/springcloud-helloworld-aws-kubernetes-eks-fargateprofiles-eksctl/kubernetes.yaml`
+1. (Optional) Check if PODs are running with `kubectl get pods`
 1. Get external ip for service "helloworld-service" with `kubectl get svc`
 1. Verify microservice with **curl {EXTERNAL-IP}**. For instance `curl a580e1a8922a541c78c54920032fb658-282970723.us-east-2.elb.amazonaws.com`
 1. Clean up AWS
@@ -16,7 +17,7 @@ DESCRIPTION
 -----------
 
 ##### Goal
-The goal of this project is to present how to deploy **microservices** on **AWS** cloud service type **EKS** using tool **eksctl**. These microservices are created in **Java** programming language with usage **Spring Boot Cloud** framework. 
+The goal of this project is to present how to deploy **microservices** on **AWS** cloud service type **EKS Fargate Profiles** using tool **eksctl**. These microservices are created in **Java** programming language with usage **Spring Boot Cloud** framework. 
 
 ##### Services
 This project consists of following services:

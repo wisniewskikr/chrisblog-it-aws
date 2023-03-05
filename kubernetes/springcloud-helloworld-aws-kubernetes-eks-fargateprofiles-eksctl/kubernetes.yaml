@@ -31,14 +31,20 @@ spec:
             initialDelaySeconds: 5
       restartPolicy: Always
 ---
-apiVersion: v1
-kind: Service
+apiVersion: extensions/v1beta1
+kind: Ingress
 metadata:
-  name: helloworld-service
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    kubernetes.io/ingress.class: alb
+  labels:
+    app: ingress-service
+  name: ingress-service
 spec:
-  type: LoadBalancer
-  selector:
-    app: helloworld-container
-  ports:
-    - port: 80
-      targetPort: 8080
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: helloworld-container
+          servicePort: 8080
+        path: /*

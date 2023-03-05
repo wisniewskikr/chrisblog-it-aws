@@ -36,27 +36,9 @@ kind: Service
 metadata:
   name: helloworld-service
 spec:
+  type: LoadBalancer
   selector:
     app: helloworld-container
   ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8000
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: ingress-service
-  annotations:
-    kubernetes.io/ingress.class: nginx
-spec:
-  rules:
-  - http:
-      paths:
-        - pathType: Prefix
-          backend:
-            service:
-              name: helloworld-service
-              port:
-                number: 8080
-          path: /
+    - port: 80
+      targetPort: 8080

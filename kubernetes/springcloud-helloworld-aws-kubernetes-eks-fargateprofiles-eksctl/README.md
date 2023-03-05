@@ -1,3 +1,9 @@
+WIP
+---
+
+Fargate Profile uses internal VPN. To be external it needs Load Balancer - for instance Ingress type Nginx.
+
+
 USAGE
 -----
 
@@ -10,7 +16,7 @@ Steps:
 1. Get external ip for service "helloworld-service" with `kubectl get svc`
 1. Verify microservice with **curl {EXTERNAL-IP}**. For instance `curl a580e1a8922a541c78c54920032fb658-282970723.us-east-2.elb.amazonaws.com`
 1. Clean up AWS
-     * Delete AWS EKS cluster with `eksctl create cluster --name helloworld-eks --region us-east-2`
+     * Delete AWS EKS cluster with `eksctl delete cluster --name helloworld-eks --region us-east-2`
 
 
 DESCRIPTION

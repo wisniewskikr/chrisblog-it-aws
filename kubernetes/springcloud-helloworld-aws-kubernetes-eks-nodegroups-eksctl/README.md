@@ -1,24 +1,22 @@
 USAGE
 -----
 
-> **NOTE** This usage assumes that user has created **AWS account**. User uses also **Windows PowerShell** command line tool. Please be aware that all AWS elements will be installed in zone **us-east-1**.
+> **NOTE** Please use any command line tool to run commands below.
 
 Steps:
-1. Configure AWS EC2. Please check section **CONFIGURATION AWS EC2**
-1. Use AWS EC2 console. Please check section **CONSOLE AWS EC2**
-     * Start Minikube with `minikube start`
-     * Deploy microservices with `kubectl apply -f https://github.com/wisniewskikr/chrisblog-it-aws/blob/main/kubernetes/springcloud-helloworld-aws-kubernetes-ec2-minikube/kubernetes.yaml`
-     * Get microservice URL with `minikube service helloworld-service`
-     * Verify microservice with `curl {microservice-url}`
+1. Create AWS EKS cluster with `eksctl create cluster --name helloworld-eks --region us-east-2`
+1. Create Kubernetes nodes with `kubectl apply -f https://raw.githubusercontent.com/wisniewskikr/chrisblog-it-aws/main/kubernetes/springcloud-helloworld-aws-kubernetes-eks-nodegroups-eksctl/kubernetes.yaml`
+1. Get external ip for service "helloworld-service" with `kubectl get svc`
+1. Verify microservice with **curl {EXTERNAL-IP}**. For instance `curl a580e1a8922a541c78c54920032fb658-282970723.us-east-2.elb.amazonaws.com`
 1. Clean up AWS
-     * Termiante AWS EC2. Please check section **TERMINATE AWS EC2** 
+     * Delete AWS EKS cluster with `eksctl create cluster --name helloworld-eks --region us-east-2`
 
 
 DESCRIPTION
 -----------
 
 ##### Goal
-The goal of this project is to present how to deploy **microservices** on **AWS** cloud service type **EC2**. These microservices are created in **Java** programming language with usage **Spring Boot Cloud** framework. Docker images of these microservices are built with usage **Kubernetes** tool type **minikube**.
+The goal of this project is to present how to deploy **microservices** on **AWS** cloud service type **EKS** using tool **eksctl**. These microservices are created in **Java** programming language with usage **Spring Boot Cloud** framework. 
 
 ##### Services
 This project consists of following services:
@@ -26,8 +24,8 @@ This project consists of following services:
 
 ##### Flow
 The following flow takes place in this project:
-1. User via Browser sends request to Service HelloWorld for content
-1. Service HelloWorld sends back response to User via Browser with message, port and uuid
+1. User via Curl sends request to Service HelloWorld for content
+1. Service HelloWorld sends back response to User via Curl with message, port and uuid
 
 ##### Launch
 To launch this application please make sure that the **Preconditions** are met and then follow instructions from **Usage** section.
@@ -42,6 +40,8 @@ This project uses following technologies:
 * **Docker**: `https://docs.google.com/document/d/1tKdfZIrNhTNWjlWcqUkg4lteI91EhBvaj6VDrhpnCnk/edit?usp=sharing`
 * **Docker Compose**: `https://docs.google.com/document/d/1SPrCS5OS_G0je_wmcLGrX8cFv7ZkQbb5uztNc9kElS4/edit?usp=sharing`
 * **AWS**
+* **kubectl**
+* **eksctl**: `https://github.com/wisniewskikr/chrisblog-it-aws/tree/main/kubernetes/springcloud-helloworld-aws-kubernetes-eks-nodegroups-eksctl`
 
 
 PRECONDITIONS
@@ -49,86 +49,9 @@ PRECONDITIONS
 
 ##### Preconditions - Tools
 * Installed **Operating System** (tested on Windows 10)
+* Installed **eksctl** (tested on version 0.132.0)
+* Installed **kubectl** (tested on version  v4.5.4)
 
 
 ##### Preconditions - Actions
-* Created AWS account 
-
-
-CONFIGURATION AWS EC2
----------------------
-
-AWS link:
-* https://console.aws.amazon.com/
-
-User Data:
-
-```
-#!/bin/bash
-yum update -y
-
-# Install Docker
-amazon-linux-extras install docker -y
-service docker start
-systemctl enable docker
-usermod -a -G docker ec2-user
-chmod 666 /var/run/docker.sock
-
-# Install kubectl
-curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
-chmod +x ./kubectl
-mv ./kubectl /usr/local/bin/kubectl
-
-# Install minikube
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-chmod +x minikube
-mv minikube /usr/local/bin/minikube
-```
-
-![My Image](readme-images/ec2-configuration-01.png)
-
-![My Image](readme-images/ec2-configuration-02.png)
-
-![My Image](readme-images/ec2-configuration-03.png)
-
-![My Image](readme-images/ec2-configuration-04.png)
-
-![My Image](readme-images/ec2-configuration-05.png)
-
-![My Image](readme-images/ec2-configuration-06.png)
-
-![My Image](readme-images/ec2-configuration-07.png)
-
-![My Image](readme-images/ec2-configuration-08.png)
-
-![My Image](readme-images/ec2-configuration-09.png)
-
-
-CONSOLE AWS EC2
----------------
-
-AWS link:
-* https://console.aws.amazon.com/
-
-![My Image](readme-images/ec2-console-01.png)
-
-![My Image](readme-images/ec2-console-02.png)
-
-![My Image](readme-images/ec2-console-03.png)
-
-![My Image](readme-images/ec2-console-04.png)
-
-![My Image](readme-images/ec2-console-05.png)
-
-
-TERMINATE AWS EC2
-------------------
-
-AWS link:
-* https://console.aws.amazon.com/
-
-![My Image](readme-images/ec2-terminate-01.png)
-
-![My Image](readme-images/ec2-terminate-02.png)
-
-![My Image](readme-images/ec2-terminate-03.png)
+* Created AWS account

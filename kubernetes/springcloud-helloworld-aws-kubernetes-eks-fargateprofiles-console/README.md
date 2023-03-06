@@ -12,8 +12,6 @@ Steps:
     * Create Kubernetes nodes with `kubectl apply -f https://raw.githubusercontent.com/wisniewskikr/chrisblog-it-aws/main/kubernetes/springcloud-helloworld-aws-kubernetes-eks-fargateprofiles-console/kubernetes.yaml`
     * Verify Kubernetes Pods with `kubectl get pods`
     * Verify Kubernetes Services with `kubectl get svc`
-1. Clean up AWS
-     * Delete AWS EKS cluster with `eksctl delete cluster --name helloworld-eks --region us-east-2`
 
 
 DESCRIPTION
@@ -109,38 +107,18 @@ CONFIGURE AWS EKS FARGATE PROFILES
 AWS link:
 * https://console.aws.amazon.com/
 
-![My Image](readme-images/eks-rolenode-01.png)
+![My Image](readme-images/eks-fp-01.png)
 
-![My Image](readme-images/eks-rolenode-02.png)
+![My Image](readme-images/eks-fp-02.png)
 
-![My Image](readme-images/eks-rolenode-03.png)
+![My Image](readme-images/eks-fp-03.png)
 
-![My Image](readme-images/eks-rolenode-04.png)
+![My Image](readme-images/eks-fp-04.png)
 
-![My Image](readme-images/eks-rolenode-05.png)
+![My Image](readme-images/eks-fp-05.png)
 
-![My Image](readme-images/eks-rolenode-06.png)
+![My Image](readme-images/eks-fp-06.png)
 
-![My Image](readme-images/eks-rolenode-07.png)
+![My Image](readme-images/eks-fp-07.png)
 
-![My Image](readme-images/eks-rolenode-08.png)
-
-![My Image](readme-images/eks-rolenode-09.png)
-
-![My Image](readme-images/eks-rolenode-10.png)
-
-![My Image](readme-images/eks-rolenode-11.png)
-
-![My Image](readme-images/eks-rolenode-12.png)
-
-![My Image](readme-images/eks-rolenode-13.png)
-
-![My Image](readme-images/eks-rolenode-14.png)
-
-![My Image](readme-images/eks-rolenode-15.png)
-
-![My Image](readme-images/eks-rolenode-16.png)
-
-![My Image](readme-images/eks-rolenode-17.png)
-
-![My Image](readme-images/eks-rolenode-18.png)
+![My Image](readme-images/eks-fp-08.png)

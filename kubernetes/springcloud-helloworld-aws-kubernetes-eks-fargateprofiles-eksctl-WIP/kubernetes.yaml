@@ -29,16 +29,41 @@ spec:
               path: /actuator/health
               port: 8080
             initialDelaySeconds: 5
-      restartPolicy: Always      
+      restartPolicy: Always
+      
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
   name: helloworld-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: helloworld-container
   ports:
-    - port: 80
+    - protocol: TCP
+      port: 80
       targetPort: 8080
+      
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: helloworld-service
+                port:
+                  number: 80

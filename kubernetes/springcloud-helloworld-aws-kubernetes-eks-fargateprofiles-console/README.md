@@ -18,7 +18,15 @@ DESCRIPTION
 -----------
 
 ##### Goal
-The goal of this project is to present how to deploy **microservices** on **AWS** cloud service type **EKS Fargate Profiles** using **AWS Console**. These microservices are created in **Java** programming language with usage **Spring Boot Cloud** framework. 
+The goal of this project is to present how to deploy **microservices** on **AWS** cloud service type **EKS Fargate Profiles** using **AWS Console**. These microservices are created in **Java** programming language with usage **Spring Boot Cloud** framework.
+
+There are two types AWS EKS:
+* **Node Group (recommended)**: Kubernetes Nodes are created in **AWS EC2**. This type supports default AWS Load Balancer. Other Load Balancers - like Ingress Nginx - can be used additionally.
+* **Fargete Profile**: Kubernetes Nodes are created in **AWS ECS**. This type doesn't support default AWS Load Balancer. Other Load Balancers - like Ingress Nginx - have to be used.
+
+Kubernetes services can be deployed on AWS EKS in two ways:
+* **Console + AWS Cli**: Kubernates Cluster is created in AWS Console and services are deployed via AWS Cli
+* **eksctl + AWS Cli (recommended)**: Kubernates Cluster is created via eksctl and services are deployed via AWS Cli
 
 ##### Services
 This project consists of following services:

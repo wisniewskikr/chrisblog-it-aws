@@ -1,15 +1,13 @@
 USAGE
 -----
 
-> **NOTE** Please use **bash** command line tool (for instance Github Bash) to run commands below.
+> **NOTE** Please use **bash** command line tool (for instance Github Bash) to run commands below. Service is not available outside AWS because AWS Load Balancer does not work for AWS EKS Fargate Profiles and I wasn't able to install Load Balancer type Ingress Nginx.
 
 Steps:
 1. Create AWS EKS cluster with `eksctl create cluster --name helloworld-eks --region us-east-2 --fargate`
-1. Install Ingress Controller type Nginx using tool helm with `helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace`
-1. (Optional) Verify Ingress Controller type Nginx with `kubectl get service ingress-nginx-controller --namespace=ingress-nginx`
-1. Create Kubernetes nodes with `kubectl apply -f https://raw.githubusercontent.com/wisniewskikr/chrisblog-it-aws/main/kubernetes/springcloud-helloworld-aws-kubernetes-eks-nodegroups-ingress-nginx-eksctl/kubernetes.yaml`
-1. Check Ingress Load Balancer address with (column "ADDRESS" - it can take few minutes) `kubectl get ingress`
-1. Verify project with **curl {address}**. For instance `curl a72147fbb8d9a445fa7beae3cd09f336-389356373.us-east-2.elb.amazonaws.com`
+1. Create Kubernetes objects with `kubectl apply -f https://raw.githubusercontent.com/wisniewskikr/chrisblog-it-aws/main/kubernetes/springcloud-helloworld-aws-kubernetes-eks-fargateprofiles-eksctl/kubernetes.yaml`
+1. Verify Kubernetes Pods with `kubectl get pods`
+1. Verify Kubernetes Services with `kubectl get svc`
 1. Clean up AWS
      * Delete AWS EKS cluster with `eksctl delete cluster --name helloworld-eks --region us-east-2`
 

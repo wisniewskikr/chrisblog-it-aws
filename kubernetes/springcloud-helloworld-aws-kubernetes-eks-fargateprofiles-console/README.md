@@ -1,7 +1,7 @@
 USAGEUSAGE
 -----
 
-> **NOTE** Please use any command line tool to run commands below.
+> **NOTE** Please use any command line tool to run commands below. Service is not available outside AWS because AWS Load Balancer does not work for AWS EKS Fargate Profiles and I wasn't able to install Load Balancer type Ingress Nginx.
 
 Steps:
 1. Create AWS EKS cluster. Please check secction **CONFIGURE AWS EKS CLUSTER**
@@ -9,7 +9,7 @@ Steps:
 1. Create Kubernetes Pods using Console. Please check section **USE CONSOLE**
     * Connect with AWS STS with `aws sts get-caller-identity`
     * Update local kubeconfig file with `aws eks update-kubeconfig --region us-east-2 --name helloworld-eks`
-    * Create Kubernetes nodes with `kubectl apply -f https://raw.githubusercontent.com/wisniewskikr/chrisblog-it-aws/main/kubernetes/springcloud-helloworld-aws-kubernetes-eks-nodegroups-console/kubernetes.yaml`
+    * Create Kubernetes nodes with `kubectl apply -f https://raw.githubusercontent.com/wisniewskikr/chrisblog-it-aws/main/kubernetes/springcloud-helloworld-aws-kubernetes-eks-fargateprofiles-console/kubernetes.yaml`
     * Verify Kubernetes Pods with `kubectl get pods`
     * Verify Kubernetes Services with `kubectl get svc`
 1. Clean up AWS
@@ -20,7 +20,7 @@ DESCRIPTION
 -----------
 
 ##### Goal
-The goal of this project is to present how to deploy **microservices** on **AWS** cloud service type **EKS Node Groups** using **AWS Console**. These microservices are created in **Java** programming language with usage **Spring Boot Cloud** framework. 
+The goal of this project is to present how to deploy **microservices** on **AWS** cloud service type **EKS Fargate Profiles** using **AWS Console**. These microservices are created in **Java** programming language with usage **Spring Boot Cloud** framework. 
 
 ##### Services
 This project consists of following services:
@@ -103,8 +103,8 @@ AWS link:
 ![My Image](readme-images/eks-cluster-18.png)
 
 
-CONFIGURE AWS EKS NODE GROUPS
------------------------------
+CONFIGURE AWS EKS FARGATE PROFILES
+----------------------------------
 
 AWS link:
 * https://console.aws.amazon.com/
@@ -144,9 +144,3 @@ AWS link:
 ![My Image](readme-images/eks-rolenode-17.png)
 
 ![My Image](readme-images/eks-rolenode-18.png)
-
-
-USE CONSOLE
------------
-
-![My Image](readme-images/console-01.png)

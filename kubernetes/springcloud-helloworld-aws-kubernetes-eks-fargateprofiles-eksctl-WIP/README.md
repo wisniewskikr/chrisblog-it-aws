@@ -1,20 +1,15 @@
-WIP
----
-
-Fargate Profile uses internal VPN. To be external it needs Load Balancer - for instance Ingress type Nginx.
-
-
 USAGE
 -----
 
-> **NOTE** Please use any command line tool to run commands below.
+> **NOTE** Please use **bash** command line tool (for instance Github Bash) to run commands below.
 
 Steps:
 1. Create AWS EKS cluster with `eksctl create cluster --name helloworld-eks --region us-east-2 --fargate`
-1. Create Kubernetes nodes with `kubectl apply -f https://raw.githubusercontent.com/wisniewskikr/chrisblog-it-aws/main/kubernetes/springcloud-helloworld-aws-kubernetes-eks-fargateprofiles-eksctl/kubernetes.yaml`
-1. (Optional) Check if PODs are running with `kubectl get pods`
-1. Get external ip for service "helloworld-service" with `kubectl get svc`
-1. Verify microservice with **curl {EXTERNAL-IP}**. For instance `curl a580e1a8922a541c78c54920032fb658-282970723.us-east-2.elb.amazonaws.com`
+1. Install Ingress Controller type Nginx using tool helm with `helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace`
+1. (Optional) Verify Ingress Controller type Nginx with `kubectl get service ingress-nginx-controller --namespace=ingress-nginx`
+1. Create Kubernetes nodes with `kubectl apply -f https://raw.githubusercontent.com/wisniewskikr/chrisblog-it-aws/main/kubernetes/springcloud-helloworld-aws-kubernetes-eks-nodegroups-ingress-nginx-eksctl/kubernetes.yaml`
+1. Check Ingress Load Balancer address with (column "ADDRESS" - it can take few minutes) `kubectl get ingress`
+1. Verify project with **curl {address}**. For instance `curl a72147fbb8d9a445fa7beae3cd09f336-389356373.us-east-2.elb.amazonaws.com`
 1. Clean up AWS
      * Delete AWS EKS cluster with `eksctl delete cluster --name helloworld-eks --region us-east-2`
 
@@ -23,7 +18,7 @@ DESCRIPTION
 -----------
 
 ##### Goal
-The goal of this project is to present how to deploy **microservices** on **AWS** cloud service type **EKS Fargate Profiles** using tool **eksctl**. These microservices are created in **Java** programming language with usage **Spring Boot Cloud** framework. 
+The goal of this project is to present how to deploy **microservices** on **AWS** cloud service type **EKS Fargate Profiles** using tool **eksctl**. Moreover instead of default AWS Load Balancer this project presents how to use Load Balancer type **Ingress Nginx**. Microservices are created in **Java** programming language with usage **Spring Boot Cloud** framework. 
 
 ##### Services
 This project consists of following services:
@@ -49,6 +44,7 @@ This project uses following technologies:
 * **AWS**
 * **kubectl**
 * **eksctl**: `https://github.com/wisniewskikr/chrisblog-it-aws/tree/main/kubernetes/springcloud-helloworld-aws-kubernetes-eks-nodegroups-eksctl`
+* **helm**
 
 
 PRECONDITIONS
@@ -58,6 +54,7 @@ PRECONDITIONS
 * Installed **Operating System** (tested on Windows 10)
 * Installed **eksctl** (tested on version 0.132.0)
 * Installed **kubectl** (tested on version  v4.5.4)
+* Installed **helm** (tested on version v3.9.0-rc.1)
 
 
 ##### Preconditions - Actions

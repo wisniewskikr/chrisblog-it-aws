@@ -9,7 +9,7 @@ Steps:
 1. Create Kubernetes Pod and Service type Load Balancer using Console. Please check section **USE CONSOLE - NODE PORT**
     * Connect with AWS STS with `aws sts get-caller-identity`
     * Update local kubeconfig file with `aws eks update-kubeconfig --region us-east-2 --name helloworld-eks`
-    * Create Kubernetes nodes with `kubectl apply -f https://raw.githubusercontent.com/wisniewskikr/chrisblog-it-aws/main/eks/springcloud-helloworld-aws-kubernetes-eks-nodegroups-console/kubernetes-nodeport.yaml`
+    * Create Kubernetes nodes with `kubectl apply -f ./kubernetes-nodeport.yaml`
     * (Optional) Check if PODs are running with `kubectl get pods`
     * Get EXTERNAL-IP of Node with with `kubectl get nodes -o wide`
     * Get PORT of Service "helloworld-service" with `kubectl get svc`
@@ -17,7 +17,7 @@ Steps:
 1. Create Kubernetes Pod and Service type Load Balancer using Console. Please check section **USE CONSOLE - LOAD BALANCER**
     * Connect with AWS STS with `aws sts get-caller-identity`
     * Update local kubeconfig file with `aws eks update-kubeconfig --region us-east-2 --name helloworld-eks`
-    * Create Kubernetes nodes with `kubectl apply -f https://raw.githubusercontent.com/wisniewskikr/chrisblog-it-aws/main/kubernetes/springcloud-helloworld-aws-kubernetes-eks-nodegroups-console/kubernetes-loadbalancer.yaml`
+    * Create Kubernetes nodes with `kubectl apply -f ./kubernetes-loadbalancer.yaml`
     * (Optional) Check if PODs are running with `kubectl get pods`
     * Get external ip for service "helloworld-service" with `kubectl get svc`
     * (Optional) Check DNS with **nslookup {EXTERNAL-IP}**. For instance `nslookup a580e1a8922a541c78c54920032fb658-282970723.us-east-2.elb.amazonaws.com`
@@ -161,8 +161,22 @@ AWS link:
 
 ![My Image](readme-images/eks-rolenode-18.png)
 
+![My Image](readme-images/eks-rolenode-19.png)
 
-USE CONSOLE
------------
+![My Image](readme-images/eks-rolenode-20.png)
 
-![My Image](readme-images/console-01.png)
+![My Image](readme-images/eks-rolenode-21.png)
+
+![My Image](readme-images/eks-rolenode-22.png)
+
+
+USE CONSOLE - NODE PORT
+-----------------------
+
+![My Image](readme-images/console-nodeport-01.png)
+
+
+USE CONSOLE - LOAD BALANCER
+---------------------------
+
+![My Image](readme-images/console-loadbalancer-01.png)

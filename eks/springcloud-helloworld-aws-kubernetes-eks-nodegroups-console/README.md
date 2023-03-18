@@ -9,9 +9,9 @@ Steps:
 1. Create Kubernetes Pod and Service type Load Balancer using Console. Please check section **USE CONSOLE - NODE PORT**
     * Connect with AWS STS with `aws sts get-caller-identity`
     * Update local kubeconfig file with `aws eks update-kubeconfig --region us-east-2 --name helloworld-eks`
-    * Create Kubernetes nodes with `kubectl apply -f https://raw.githubusercontent.com/wisniewskikr/chrisblog-it-aws/main/kubernetes/springcloud-helloworld-aws-kubernetes-eks-nodegroups-console/kubernetes-nodeport.yaml`
+    * Create Kubernetes nodes with `kubectl apply -f https://raw.githubusercontent.com/wisniewskikr/chrisblog-it-aws/main/eks/springcloud-helloworld-aws-kubernetes-eks-nodegroups-console/kubernetes-nodeport.yaml`
     * (Optional) Check if PODs are running with `kubectl get pods`
-    * Get EXTERNAL IP of Node with with `kubectl get nodes -o wide : list of nodes`
+    * Get EXTERNAL-IP of Node with with `kubectl get nodes -o wide`
     * Get PORT of Service "helloworld-service" with `kubectl get svc`
     * Verify microservice with **curl {EXTERNAL-IP}:{PORT}**. For instance `curl ...`
 1. Create Kubernetes Pod and Service type Load Balancer using Console. Please check section **USE CONSOLE - LOAD BALANCER**

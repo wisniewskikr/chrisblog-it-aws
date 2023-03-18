@@ -6,10 +6,18 @@ USAGEUSAGE
 Steps:
 1. Create AWS EKS cluster. Please check secction **CONFIGURE AWS EKS CLUSTER**
 1. Create AWS EKS Node Groups. Please check section **CONFIGURE AWS EKS NODE GROUPS**
-1. Create Kubernetes Pods using Console. Please check section **USE CONSOLE**
+1. Create Kubernetes Pod and Service type Load Balancer using Console. Please check section **USE CONSOLE - NODE PORT**
     * Connect with AWS STS with `aws sts get-caller-identity`
     * Update local kubeconfig file with `aws eks update-kubeconfig --region us-east-2 --name helloworld-eks`
-    * Create Kubernetes nodes with `kubectl apply -f https://raw.githubusercontent.com/wisniewskikr/chrisblog-it-aws/main/kubernetes/springcloud-helloworld-aws-kubernetes-eks-nodegroups-console/kubernetes.yaml`
+    * Create Kubernetes nodes with `kubectl apply -f https://raw.githubusercontent.com/wisniewskikr/chrisblog-it-aws/main/kubernetes/springcloud-helloworld-aws-kubernetes-eks-nodegroups-console/kubernetes-nodeport.yaml`
+    * (Optional) Check if PODs are running with `kubectl get pods`
+    * Get EXTERNAL IP of Node with with `kubectl get nodes -o wide : list of nodes`
+    * Get PORT of Service "helloworld-service" with `kubectl get svc`
+    * Verify microservice with **curl {EXTERNAL-IP}:{PORT}**. For instance `curl ...`
+1. Create Kubernetes Pod and Service type Load Balancer using Console. Please check section **USE CONSOLE - LOAD BALANCER**
+    * Connect with AWS STS with `aws sts get-caller-identity`
+    * Update local kubeconfig file with `aws eks update-kubeconfig --region us-east-2 --name helloworld-eks`
+    * Create Kubernetes nodes with `kubectl apply -f https://raw.githubusercontent.com/wisniewskikr/chrisblog-it-aws/main/kubernetes/springcloud-helloworld-aws-kubernetes-eks-nodegroups-console/kubernetes-loadbalancer.yaml`
     * (Optional) Check if PODs are running with `kubectl get pods`
     * Get external ip for service "helloworld-service" with `kubectl get svc`
     * (Optional) Check DNS with **nslookup {EXTERNAL-IP}**. For instance `nslookup a580e1a8922a541c78c54920032fb658-282970723.us-east-2.elb.amazonaws.com`

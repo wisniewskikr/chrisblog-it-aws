@@ -85,7 +85,7 @@ sudo yum install -y apache-maven
 sudo yum install -y git
 
 # Install Docker
-amazon-linux-extras install docker -y
+yum install docker -y
 service docker start
 systemctl enable docker
 usermod -a -G docker ec2-user
